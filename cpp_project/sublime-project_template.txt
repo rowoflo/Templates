@@ -6,7 +6,7 @@
             [
                 "make"
             ],
-            "name": "optimal",
+            "name": "___project_name___",
             "variants":
             [
                 {
