@@ -2,37 +2,37 @@
     "build_systems":
     [
         {
+            "name": "___project_name___",
             "cmd":
             [
                 "make"
             ],
-            "name": "___project_name___",
             "variants":
             [
                 {
+                    "name": "Run",
                     "cmd":
                     [
                         "$project_path/bin/$file_base_name"
                     ],
-                    "name": "Run",
                     "shell": true
                 },
                 {
+                    "name": "CMake",
                     "cmd":
                     [
                         "cmake",
                         ".."
                     ],
-                    "name": "cmake",
                     "working_dir": "$project_path/build"
                 },
                 {
+                    "name": "Doxygen",
                     "cmd":
                     [
                         "doxygen",
                         "Doxyfile"
                     ],
-                    "name": "doxygen",
                     "working_dir": "$project_path"
                 }
             ],
