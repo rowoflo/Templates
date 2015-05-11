@@ -1,0 +1,54 @@
+#!/bin/bash
+# NAME
+#   new_arduino_sketch -- Creates a new Arduino sketch
+#
+# SYNOPSIS
+#   new_arduino_sketch ?sketch_name?
+#
+# DESCRIPTION
+#   ?long description?
+#
+# OPTIONS
+#   -1  ?description?
+#
+#
+# ENVIRONMENT
+#   The following environment variables affect the execution of name:
+#   ?VAR1?  ?description?
+#
+# EXIT STATUS
+#
+# EXAMPLES
+#   ?example 1? ?description?
+#       ?example 1?
+#
+# BUGS
+#   bug1
+#
+# Written by: Rowland O'Flaherty (rowlandoflaherty.com)
+# Created on: 2015 MAY 11
+
+sketch_name=$1
+
+if [ -d $sketch_name ]; then
+    echo ERROR: directory $sketch_name exist
+    exit 1
+fi
+
+mkdir $sketch_name
+cd $sketch_name
+
+cp ~/Dropbox/Templates/arduino_sketch/Makefile_template Makefile
+sed -i "" s/___sketch_name___/$sketch_name/g Makefile
+
+cp ~/Dropbox/Templates/arduino_sketch/sketch_ino_template.txt $sketch_name.ino
+sed -i "" s/___sketch_name___/$sketch_name/g $sketch_name.ino
+
+cp ~/Dropbox/Templates/arduino_sketch/sublime-project_template.txt $sketch_name.sublime-project
+sed -i "" s/___sketch_name___/$sketch_name/g $sketch_name.sublime-project
+
+git init
+git add -A
+git commit -m "Initial commit"
+
+open $sketch_name.sublime-project

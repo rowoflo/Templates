@@ -1,0 +1,39 @@
+{
+    "build_systems":
+    [
+        {
+            "name": "___sketch_name___",
+            "cmd":
+            [
+                "make"
+            ],
+            "variants":
+            [
+                {
+                    "name": "Upload",
+                    "cmd":
+                    [
+                        "make upload"
+                    ],
+                    "shell": true
+                },
+                {
+                    "name": "Clean",
+                    "cmd":
+                    [
+                        "make clean"
+                    ],
+                    "shell": true
+                }
+            ],
+            "working_dir": "$project_path"
+        }
+    ],
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ]
+}
