@@ -215,7 +215,7 @@ arduinoObjs := $(coreObjs) $(libObjs)
 
 
 # Define source dependencies ---------------------------------------------------
-userSourceLibDepenH := $(shell echo $(filter-out %.cpp,$(filter-out $(sourceName).o: $(sourceName).cpp,$(shell $(CPP) $(CPPFLAGS) $(userLibIncs) -M -MM $(sourceName).cpp))))
+userSourceLibDepenH := $(shell echo $(filter-out %.cpp,$(filter-out $(sourceName).o: $(SOURCE),$(shell $(CPP) $(CPPFLAGS) $(userLibIncs) -x c++ -M -MM $(SOURCE)))))
 userSourceLibDepenO := $(subst .h,.o,$(userSourceLibDepenH))
 
 
