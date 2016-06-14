@@ -38,16 +38,22 @@ fi
 mkdir $project_name
 cd $project_name
 
-mkdir bin
 mkdir build
 mkdir doc
 mkdir include
-mkdir lib
 mkdir src
+mkdir dependencies
 mkdir test
+mkdir working
 
-cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_template.txt CMakeLists.txt
+cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_root_template.txt CMakeLists.txt
 sed -i "" s/___project_name___/$project_name/g CMakeLists.txt
+
+cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_src_template.txt src/CMakeLists.txt
+sed -i "" s/___project_name___/$project_name/g src/CMakeLists.txt
+
+cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_test_template.txt test/CMakeLists.txt
+sed -i "" s/___project_name___/$project_name/g test/CMakeLists.txt
 
 cp ~/Dropbox/Templates/cpp_project/dotGitignore_template.txt .gitignore
 sed -i "" s/___project_name___/$project_name/g .gitignore
@@ -66,9 +72,13 @@ sed -i "" s/___project_name___/$project_name/g README.md
 cp ~/Dropbox/Templates/cpp_project/sublime-project_template.txt $project_name.sublime-project
 sed -i "" s/___project_name___/$project_name/g $project_name.sublime-project
 
+doxygen
+
 git init
+git submodule add ssh://git@github.com/google/googletest.git dependencies/googletest
 git add -A
 git commit -m "Initial commit"
-git branch gh-pages
 
-open $project_name.sublime-project
+# git branch gh-pages
+
+# open $project_name.sublime-project

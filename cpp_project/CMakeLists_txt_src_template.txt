@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 2.6)
+project(___project_name___lib)
+
+###########################################
+#       Include directories
+###########################################
+include_directories(../include)
+include_directories(../dependencies)
+
+###########################################
+#       Source files & libs
+###########################################
+file(GLOB lib_source "*.cpp")
+file(GLOB lib_headers "../include/*.h")
+list(SORT lib_source)
+add_library(___project_name___ STATIC ${lib_source} ${lib_headers})

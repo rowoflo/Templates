@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 2.6)
+project(___project_name____test)
+
+###########################################
+#       Include directories
+###########################################
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/dependencies)
+
+###########################################
+#       Source files & libs
+###########################################
+file(GLOB tests_files "*.cpp")
+
+add_executable(${PROJECT_NAME} EXCLUDE_FROM_ALL ${tests_files})
+target_link_libraries(${PROJECT_NAME} ___project_name___ gtest)
+
+add_test( NAME ___project_name____cpp_unit_tests
+          WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+          COMMAND ${PROJECT_NAME} --gtest_output=xml )
+
+add_dependencies(check ${PROJECT_NAME})
