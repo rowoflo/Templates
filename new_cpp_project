@@ -61,8 +61,8 @@ sed -i "" s/___project_name___/$project_name/g .gitignore
 cp ~/Dropbox/Templates/cpp_project/Doxyfile_template.txt Doxyfile
 sed -i "" s/___project_name___/$project_name/g Doxyfile
 
-cp ~/Dropbox/Templates/cpp_project/index_html_template.txt index.html
-sed -i "" s/___project_name___/$project_name/g index.html
+# cp ~/Dropbox/Templates/cpp_project/index_html_template.txt index.html
+# sed -i "" s/___project_name___/$project_name/g index.html
 
 cp ~/Dropbox/Templates/cpp_project/LICENSE_template.txt LICENSE
 
@@ -81,4 +81,4 @@ git commit -m "Initial commit"
 
 # git branch gh-pages
 
-# open $project_name.sublime-project
+open $project_name.sublime-project
