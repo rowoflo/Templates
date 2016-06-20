@@ -1,0 +1,2 @@
+___project_name___.sublime-workspace
+build/

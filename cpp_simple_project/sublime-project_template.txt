@@ -1,0 +1,42 @@
+{
+    "build_systems":
+    [
+        {
+            "name": "___project_name___",
+            "cmd":
+            [
+                "make"
+            ],
+            "variants":
+            [
+                {
+                    "name": "Run",
+                    "cmd":
+                    [
+                        "$project_path/bin/$file_base_name"
+                    ],
+                    "shell": true
+                },
+                {
+                    "name": "CMake",
+                    "cmd":
+                    [
+                        "cmake",
+                        ".."
+                    ],
+                    "working_dir": "$project_path/build"
+                }
+            ],
+            "working_dir": "$project_path/build"
+        }
+    ],
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": ".",
+            "file_exclude_patterns":
+            ["build/*"]
+        }
+    ]
+}

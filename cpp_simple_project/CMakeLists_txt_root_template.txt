@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.2)
+project(___project_name___)
+
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11" )
+
+# Gather files
+file(GLOB ___project_name____SRCS src/*.h src/*.cpp)
+
+# Create executable
+add_executable(___project_name___
+    ${___project_name____SRCS}
+)

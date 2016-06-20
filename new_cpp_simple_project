@@ -1,0 +1,37 @@
+#!/bin/bash
+# NAME
+#   new_cpp_simple_project -- Creates a new bare bones C++ project
+#
+# USAGE
+#   new_cpp_simple_project ?project_name?
+#
+# Written by: Rowland O'Flaherty (rowlandoflaherty.com)
+# Created on: 2016 JUN 20
+
+project_name=$1
+
+if [ -d $project_name ]; then
+    echo ERROR: directory $project_name exist
+    exit 1
+fi
+
+mkdir $project_name
+cd $project_name
+
+mkdir build
+mkdir src
+
+cp ~/Dropbox/Templates/cpp_simple_project/CMakeLists_txt_root_template.txt CMakeLists.txt
+sed -i "" s/___project_name___/$project_name/g CMakeLists.txt
+
+cp ~/Dropbox/Templates/cpp_simple_project/dotGitignore_template.txt .gitignore
+sed -i "" s/___project_name___/$project_name/g .gitignore
+
+cp ~/Dropbox/Templates/cpp_simple_project/sublime-project_template.txt $project_name.sublime-project
+sed -i "" s/___project_name___/$project_name/g $project_name.sublime-project
+
+git init
+git add -A
+git commit -m "Initial commit"
+
+open $project_name.sublime-project
