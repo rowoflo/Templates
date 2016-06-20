@@ -13,7 +13,7 @@
                     "name": "Run",
                     "cmd":
                     [
-                        "$project_path/bin/$file_base_name"
+                        "$project_path/build/$project_base_name"
                     ],
                     "shell": true
                 },
