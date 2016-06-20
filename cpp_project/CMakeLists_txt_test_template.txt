@@ -1,22 +1,30 @@
-cmake_minimum_required(VERSION 2.6)
-project(___project_name____test)
+cmake_minimum_required(VERSION 3.2)
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11" )
 
-###########################################
-#       Include directories
-###########################################
-include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_SOURCE_DIR}/dependencies)
+# Enable ExternalProject CMake module
+include(ExternalProject)
 
-###########################################
-#       Source files & libs
-###########################################
-file(GLOB tests_files "*.cpp")
+# Download and install GoogleTest
+ExternalProject_Add(gtest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+)
 
-add_executable(${PROJECT_NAME} EXCLUDE_FROM_ALL ${tests_files})
-target_link_libraries(${PROJECT_NAME} ___project_name___ gtest)
+# Set GoogleTest include files
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest/googletest/include)
 
-add_test( NAME ___project_name____cpp_unit_tests
-          WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-          COMMAND ${PROJECT_NAME} --gtest_output=xml )
+# Set GoogleTest source files
+file(GLOB gtest_SRCS *.cpp)
 
-add_dependencies(check ${PROJECT_NAME})
+# Create test
+add_executable(___project_name____test ${gtest_SRCS})
+add_dependencies(___project_name____test gtest)
+target_link_libraries(___project_name____test
+    ___project_name___
+    ${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest-build/googlemock/gtest/libgtest.a
+)
+add_test(NAME ___project_name____test
+         COMMAND ___project_name____test)
+
+
+
+

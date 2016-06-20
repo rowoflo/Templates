@@ -1,16 +1,22 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.2)
 project(___project_name___)
 
 ###########################################
-#       Code Coverage
+#       Compilation flags
 ###########################################
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11" )
+
+###########################################
+#       Testing and Code Coverage
+###########################################
+enable_testing()
+add_custom_target(check
+                  COMMAND ${CMAKE_CTEST_COMMAND} -V -T Test
+                  DEPENDS ___project_name____test)
+
 OPTION( ENABLE_CODECOVERAGE "Enable code coverage testing support" )
 
-if ( ENABLE_CODECOVERAGE )
-
-    if ( NOT CMAKE_BUILD_TYPE STREQUAL "Debug" )
-        message( WARNING "Code coverage results with an optimised (non-Debug) build may be misleading" )
-    endif ( NOT CMAKE_BUILD_TYPE STREQUAL "Debug" )
+if ( ENABLE_COVERAGE )
 
     if ( NOT DEFINED CODECOV_HTMLOUTPUTDIR )
         set( CODECOV_HTMLOUTPUTDIR ./coverage_report )
@@ -18,32 +24,17 @@ if ( ENABLE_CODECOVERAGE )
 
     find_program( CODECOV_GCOVR gcovr )
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
-    add_custom_target( coverage
-                       COMMAND ${CMAKE_COMMAND} -E make_directory ${CODECOV_HTMLOUTPUTDIR}
-                       COMMAND ${CODECOV_GCOVR} -s -r ${CMAKE_SOURCE_DIR} --exclude=".*/dependencies/.*" --exclude=".*/test/.*" -u --html --html-details -o ${CODECOV_HTMLOUTPUTDIR}/index.html
-                       DEPENDS check)
 
-endif (ENABLE_CODECOVERAGE )
+    add_custom_target(coverage
+                      COMMAND ${CMAKE_COMMAND} -E make_directory ${CODECOV_HTMLOUTPUTDIR}
+                      COMMAND ${CODECOV_GCOVR} -s -r ${CMAKE_SOURCE_DIR} --exclude=".*/test/.*" -u --html --html-details -o ${CODECOV_HTMLOUTPUTDIR}/index.html
+                      DEPENDS check)
 
-###########################################
-#       Compilation flags
-###########################################
-set(CPP_COMPILE_FLAGS "-std=c++11")
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${CPP_COMPILE_FLAGS}" )
+endif (ENABLE_COVERAGE )
 
 ###########################################
 #       Sub-directories
 ###########################################
-# find_package(boost REQUIRED)
-# include_directories( "$ENV{EIGEN3_INCLUDE_DIR}" )
-
-if ( EXISTS ${PROJECT_SOURCE_DIR}/src )
-	add_subdirectory(${PROJECT_SOURCE_DIR}/src)
-endif()
-
-enable_testing()
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} -V -T Test)
-
-add_subdirectory(dependencies/googletest ${GTEST_COMPILE_DIR} EXCLUDE_FROM_ALL)
-include_directories(dependencies/googletest/googletest/include)
-add_subdirectory(test EXCLUDE_FROM_ALL)
+add_subdirectory(src)
+add_subdirectory(test)
+add_subdirectory(examples)
