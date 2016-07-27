@@ -21,6 +21,9 @@ cd $project_name
 mkdir build
 mkdir src
 
+cp ~/Dropbox/Templates/cpp_simple_project/main_cpp_template.txt src/main.cpp
+sed -i "" s/___project_name___/$project_name/g src/main.cpp
+
 cp ~/Dropbox/Templates/cpp_simple_project/CMakeLists_txt_root_template.txt CMakeLists.txt
 sed -i "" s/___project_name___/$project_name/g CMakeLists.txt
 
