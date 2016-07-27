@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 project(___project_name___)
 
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11" )
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 
 # Find packages
 find_package(Eigen3)
