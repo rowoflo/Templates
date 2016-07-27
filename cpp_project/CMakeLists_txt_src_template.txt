@@ -4,12 +4,17 @@ set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11" )
 # Gather files
 file(GLOB ___project_name____SRCS *.h *.cpp)
 
-# Declare the library
-add_library(___project_name___
-    STATIC ${___project_name____SRCS}
+# Declare the executable
+add_executable(___project_name___
+    ${___project_name____SRCS}
 )
 
-# Exported include directories
-target_include_directories(___project_name___
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-)
+# # Declare the library
+# add_library(___project_name___
+#     STATIC ${___project_name____SRCS}
+# )
+
+# # Exported include directories
+# target_include_directories(___project_name___
+#     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+# )

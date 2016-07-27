@@ -19,7 +19,7 @@ file(GLOB gtest_SRCS *.cpp)
 add_executable(___project_name____test ${gtest_SRCS})
 add_dependencies(___project_name____test gtest)
 target_link_libraries(___project_name____test
-    ___project_name___
+    #___project_name___
     ${CMAKE_CURRENT_BINARY_DIR}/gtest-prefix/src/gtest-build/googlemock/gtest/libgtest.a
 )
 add_test(NAME ___project_name____test

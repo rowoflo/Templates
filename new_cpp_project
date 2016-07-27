@@ -20,21 +20,23 @@ cd $project_name
 
 mkdir build
 mkdir doc
-mkdir examples
 mkdir src
 mkdir test
 
 cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_root_template.txt CMakeLists.txt
 sed -i "" s/___project_name___/$project_name/g CMakeLists.txt
 
-cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_examples_template.txt examples/CMakeLists.txt
-sed -i "" s/___project_name___/$project_name/g examples/CMakeLists.txt
-
 cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_src_template.txt src/CMakeLists.txt
 sed -i "" s/___project_name___/$project_name/g src/CMakeLists.txt
 
+cp ~/Dropbox/Templates/cpp_simple_project/main_cpp_template.txt src/main.cpp
+sed -i "" s/___project_name___/$project_name/g src/main.cpp
+
 cp ~/Dropbox/Templates/cpp_project/CMakeLists_txt_test_template.txt test/CMakeLists.txt
 sed -i "" s/___project_name___/$project_name/g test/CMakeLists.txt
+
+cp ~/Dropbox/Templates/cpp_project/test_main_cpp_template.txt test/main.cpp
+sed -i "" s/___project_name___/$project_name/g test/main.cpp
 
 cp ~/Dropbox/Templates/cpp_project/dotGitignore_template.txt .gitignore
 sed -i "" s/___project_name___/$project_name/g .gitignore

@@ -26,6 +26,7 @@ or
 
 From `build` directory
 ```
+>> cmake -DBUILD_TYPE=test ..
 >> make test
 ```
 or
@@ -34,14 +35,14 @@ or
 ```
 or
 ```
->> test/testfoo/testfoo
+>> ./test/___project_name____test
 ```
 
 ## Generate coverage report
 
 From `build` directory
 ```
->> cmake -DENABLE_COVERAGE=on ..
+>> cmake -DCMAKE_BUILD_TYPE=test ..
 >> make coverage
 ```
 View detailed coverage report at `./build/coverage_report/index.html`
@@ -57,16 +58,3 @@ or
 >> doxygen ..
 ```
 View detailed coverage report at `./build/doc...`
-
-
-## Installing
-
-From `build` directory
-```
->> make install
-```
-By default binaries are install into `/usr/local/bin`. To specify a different installation location do
-```
->> make DESTDIR={/desired/path} install
-```
-The default install directory prefix is `/usr/local`. To change the prefix set the `CMAKE_INSTALL_PREFIX` in the CMakeLists.txt file.
